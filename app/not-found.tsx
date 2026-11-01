@@ -9,7 +9,7 @@ export default function NotFound() {
         href="/"
         className="mt-6 inline-block text-accent underline underline-offset-4 outline-offset-4 focus-visible:outline-2 focus-visible:outline-accent"
       >
-        All tutorials
+        Contents
       </Link>
     </main>
   )

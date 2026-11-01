@@ -1,78 +1,66 @@
 import Link from "next/link"
-import { getTutorials } from "@/lib/tutorials"
+import { getContents, type TocSection, type TutorialSummary } from "@/lib/tutorials"
 
-const tutorialTemplate = `---
-title: Gradient descent
-description: How a model steps downhill.
-tags:
-  - optimization
----
+function TutorialLinks({ tutorials }: { tutorials: TutorialSummary[] }) {
+  if (tutorials.length === 0) return null
 
-The step is $\\theta \\leftarrow \\theta - \\eta \\nabla L$.
+  return (
+    <ul className="border-t border-line">
+      {tutorials.map((tutorial) => (
+        <li key={tutorial.slug} className="border-b border-line">
+          <Link
+            href={`/tutorials/${tutorial.slug}`}
+            className="group block py-3 outline-offset-4 focus-visible:outline-2 focus-visible:outline-accent"
+          >
+            <span className="font-display text-lg tracking-tight text-ink group-hover:text-accent">
+              {tutorial.title}
+            </span>
+            <span className="mt-1 block text-sm leading-relaxed text-muted">{tutorial.description}</span>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
 
-$$
-L(\\theta) = \\frac{1}{n} \\sum_{i=1}^{n} \\ell_i
-$$`
+function Sections({ sections, depth }: { sections: TocSection[]; depth: number }) {
+  return sections.map((section) => {
+    const Heading = depth === 0 ? "h2" : "h3"
+    return (
+      <section key={section.path} className={depth === 0 ? "mt-10" : "mt-6"}>
+        <Heading
+          className={
+            depth === 0
+              ? "font-display text-xl tracking-tight"
+              : "text-xs font-medium tracking-[0.14em] text-muted uppercase"
+          }
+        >
+          {section.label}
+        </Heading>
+        <div className={depth === 0 ? "mt-3" : "mt-2 pl-4"}>
+          <TutorialLinks tutorials={section.tutorials} />
+          <Sections sections={section.children} depth={depth + 1} />
+        </div>
+      </section>
+    )
+  })
+}
 
 export default function HomePage() {
-  const tutorials = getTutorials()
+  const contents = getContents()
+  const isEmpty = contents.tutorials.length === 0 && contents.sections.length === 0
 
   return (
     <main className="pt-10">
-      <p className="text-xs font-medium tracking-[0.16em] text-accent uppercase">
-        Mathematics and machine learning
-      </p>
-      <h1 className="mt-3 font-display text-3xl leading-tight tracking-tight text-ink">
-        The ML Engineer&apos;s Field Guide
-      </h1>
-      <p className="mt-4 max-w-3xl leading-relaxed text-muted">
-        The concepts, code, and craft behind production ML. Each note is a Markdown file,
-        and the equations are typeset with MathJax.
-      </p>
-
-      <h2 className="mt-12 text-xs font-medium tracking-[0.16em] text-muted uppercase">Tutorials</h2>
-      {tutorials.length === 0 ? (
-        <p className="mt-4 border-y border-line py-6 text-muted">No tutorials yet.</p>
+      <h1 className="font-display text-3xl leading-tight tracking-tight text-ink">Contents</h1>
+      {isEmpty ? (
+        <p className="mt-8 text-muted">No tutorials yet.</p>
       ) : (
-        <div className="mt-4 divide-y divide-line border-y border-line">
-          {tutorials.map((tutorial) => (
-            <Link
-              key={tutorial.slug}
-              href={`/tutorials/${tutorial.slug}`}
-              className="group block py-5 outline-offset-4 focus-visible:outline-2 focus-visible:outline-accent"
-            >
-              <h3 className="font-display text-xl tracking-tight text-ink group-hover:text-accent">
-                {tutorial.title}
-              </h3>
-              <p className="mt-1.5 leading-relaxed text-muted">{tutorial.description}</p>
-              {tutorial.tags.length > 0 ? (
-                <p className="mt-3 text-sm text-clay">{tutorial.tags.join(" · ")}</p>
-              ) : null}
-            </Link>
-          ))}
+        <div className="mt-8">
+          <TutorialLinks tutorials={contents.tutorials} />
+          <Sections sections={contents.sections} depth={0} />
         </div>
       )}
-
-      <section className="mt-16">
-        <h2 className="font-display text-xl tracking-tight">Publish a tutorial</h2>
-        <div className="mt-3 space-y-3 leading-relaxed text-muted">
-          <p>
-            Add a Markdown file to <code className="text-ink">content/tutorials</code>. The file
-            name is the address:{" "}
-            <code className="text-ink">content/tutorials/gradient-descent.md</code> is published at{" "}
-            <code className="text-ink">/tutorials/gradient-descent</code>.
-          </p>
-          <p>
-            Deploy the repository on Vercel. The new file is published on the next deployment.
-            Inline maths uses <code className="text-ink">$...$</code> or <code className="text-ink">\(...\)</code>.
-            Display maths uses a <code className="text-ink">$$</code> block or <code className="text-ink">\[...\]</code>.
-            MathJax typesets both. Code fences are left as code.
-          </p>
-        </div>
-        <pre className="mt-5 overflow-x-auto rounded-md bg-panel p-4 text-sm leading-relaxed text-ink">
-          {tutorialTemplate}
-        </pre>
-      </section>
     </main>
   )
 }

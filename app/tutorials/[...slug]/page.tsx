@@ -3,14 +3,14 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import { TutorialBody } from "@/components/tutorial-body"
 import { renderMarkdown } from "@/lib/markdown"
-import { getTutorial, getTutorials } from "@/lib/tutorials"
+import { getTutorial, getTutorials, labelFromFolder } from "@/lib/tutorials"
 
 type TutorialPageProps = {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string[] }>
 }
 
 export function generateStaticParams() {
-  return getTutorials().map((tutorial) => ({ slug: tutorial.slug }))
+  return getTutorials().map((tutorial) => ({ slug: tutorial.slug.split("/") }))
 }
 
 export const dynamicParams = false
@@ -39,12 +39,13 @@ export default async function TutorialPage({ params }: TutorialPageProps) {
         href="/"
         className="text-sm text-accent underline underline-offset-4 outline-offset-4 focus-visible:outline-2 focus-visible:outline-accent"
       >
-        All tutorials
+        Contents
       </Link>
       <header className="mt-6">
-        <h1 className="font-display text-3xl leading-tight tracking-tight">
-          {tutorial.title}
-        </h1>
+        {tutorial.folders.length > 0 ? (
+          <p className="mb-2 text-sm text-muted">{tutorial.folders.map(labelFromFolder).join(" / ")}</p>
+        ) : null}
+        <h1 className="font-display text-3xl leading-tight tracking-tight">{tutorial.title}</h1>
         <p className="mt-3 leading-relaxed text-muted">{tutorial.description}</p>
         {tutorial.tags.length > 0 ? (
           <p className="mt-4 text-sm text-clay">{tutorial.tags.join(" · ")}</p>

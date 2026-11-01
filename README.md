@@ -4,7 +4,7 @@ Tutorials on mathematics and machine learning. Each tutorial is a Markdown file 
 
 ## Add a tutorial
 
-Create `content/tutorials/your-slug.md` with `title` and `description` in the frontmatter. The file name is the URL: `your-slug.md` is published at `/tutorials/your-slug`.
+Create a Markdown file anywhere under `content/tutorials`, including in a subfolder. Give it a `title` and `description` in the frontmatter. `content/tutorials/maths/algebra.md` is published at `/tutorials/maths/algebra`. The home page lists every file as a table of contents, grouped by folder.
 
 Inline maths uses `$...$` or `\(...\)`. Display maths uses a `$$` block or `\[...\]`. MathJax typesets both.
 
