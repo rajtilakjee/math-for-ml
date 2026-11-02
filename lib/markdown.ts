@@ -5,6 +5,7 @@ import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import { unified, type Plugin } from "unified"
 import { visit } from "unist-util-visit"
+import { headingId, headingLabel, type PageHeading } from "@/lib/headings"
 
 type TextNode = { type: "text"; value: string }
 
@@ -53,15 +54,44 @@ function acceptLatexDelimiters(source: string) {
     .join("")
 }
 
+type HastNode = {
+  type: string
+  tagName?: string
+  value?: string
+  properties?: Record<string, unknown>
+  children?: HastNode[]
+}
+
+function textContent(node: HastNode): string {
+  if (node.type === "text") return node.value ?? ""
+  return (node.children ?? []).map(textContent).join("")
+}
+
+function rehypeHeadingIds(headings: PageHeading[]): Plugin {
+  return () => (tree) => {
+    const seen = new Map<string, number>()
+    visit(tree, "element", (node) => {
+      const element = node as HastNode
+      if (element.tagName !== "h2" && element.tagName !== "h3") return
+      const text = headingLabel(textContent(element))
+      const id = headingId(text, seen)
+      element.properties = { ...element.properties, id }
+      headings.push({ depth: element.tagName === "h2" ? 2 : 3, id, text })
+    })
+  }
+}
+
 export async function renderMarkdown(source: string) {
+  const headings: PageHeading[] = []
   const file = await unified()
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkMath)
     .use(remarkMathjaxSource)
     .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeHeadingIds(headings))
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(acceptLatexDelimiters(source))
 
-  return String(file)
+  return { html: String(file), headings }
 }

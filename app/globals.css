@@ -13,6 +13,10 @@
   --color-panel: #e9e1d2;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background:
     radial-gradient(ellipse at top left, #efe4cf 0%, transparent 42%),
@@ -22,6 +26,24 @@ body {
 
 ::selection {
   background: #c9e4e1;
+}
+
+.page-toc {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(28 25 21 / 16%) transparent;
+}
+
+.page-toc::-webkit-scrollbar {
+  width: 3px;
+}
+
+.page-toc::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.page-toc::-webkit-scrollbar-thumb {
+  background: rgb(28 25 21 / 16%);
+  border-radius: 999px;
 }
 
 .tutorial {
@@ -39,6 +61,7 @@ body {
   font-family: var(--font-display), Georgia, serif;
   line-height: 1.25;
   font-weight: 560;
+  scroll-margin-top: 1.5rem;
 }
 
 .tutorial h2 {

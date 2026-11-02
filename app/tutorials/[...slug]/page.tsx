@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { TutorialBody } from "@/components/tutorial-body"
+import { TutorialToc } from "@/components/tutorial-toc"
 import { renderMarkdown } from "@/lib/markdown"
 import { getTutorial, getTutorials, labelFromFolder } from "@/lib/tutorials"
 
@@ -31,7 +32,7 @@ export default async function TutorialPage({ params }: TutorialPageProps) {
   const tutorial = getTutorial(slug)
   if (!tutorial) notFound()
 
-  const html = await renderMarkdown(tutorial.content)
+  const { html, headings } = await renderMarkdown(tutorial.content)
 
   return (
     <main className="pt-10">
@@ -51,6 +52,7 @@ export default async function TutorialPage({ params }: TutorialPageProps) {
           <p className="mt-4 text-sm text-clay">{tutorial.tags.join(" · ")}</p>
         ) : null}
       </header>
+      <TutorialToc headings={headings} />
       <div className="mt-10">
         <TutorialBody html={html} />
       </div>
