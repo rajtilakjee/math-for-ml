@@ -10,11 +10,17 @@ Tutorials are organized by mathematical subject and prerequisite sequence. Each 
 
 1. [Algebra Foundations](content/tutorials/01-foundations/01-algebra-foundations.md)
 2. [Exponents and Logarithms](content/tutorials/01-foundations/02-exponents-and-logarithms.md)
-3. [Functions](content/tutorials/01-foundations/03-functions.md)
-4. [Quadratic Functions and Equations](content/tutorials/01-foundations/04-quadratic-functions-and-equations.md)
-5. [Polynomial Functions](content/tutorials/01-foundations/05-polynomial-functions.md)
+3. [Equations and Inequalities](content/tutorials/01-foundations/03-equations-and-inequalities.md)
+4. [Functions](content/tutorials/01-foundations/03-functions.md)
+5. [Function Composition and Inverse Functions](content/tutorials/01-foundations/05-function-composition-and-inverses.md)
+6. [Quadratic Functions and Equations](content/tutorials/01-foundations/04-quadratic-functions-and-equations.md)
+7. [Polynomial Functions](content/tutorials/01-foundations/05-polynomial-functions.md)
+8. [Rational Functions](content/tutorials/01-foundations/08-rational-functions.md)
+9. [Exponential Functions](content/tutorials/01-foundations/09-exponential-functions.md)
+10. [Trigonometry Foundations](content/tutorials/01-foundations/10-trigonometry-foundations.md)
+11. [Sequences and Series](content/tutorials/01-foundations/11-sequences-and-series.md)
 
-Topics still to be added to this part: function composition, inverse functions, exponential functions, and trigonometry.
+Part I builds the algebraic and function fluency needed for linear algebra, calculus, probability and statistics. The chapters cover equations and inequalities, function composition and inverses, polynomial and rational functions, exponential behaviour, trigonometry, and summation.
 
 ### Planned parts
 
@@ -24,8 +30,6 @@ Topics still to be added to this part: function composition, inverse functions, 
 - **Part V: Classical Machine Learning**
 - **Part VI: Deep Learning**
 - **Part VII: Foundations of Large Language Models**
-
-The order is intentional: algebra and functions develop the notation and manipulation skills needed for linear algebra and calculus. Those subjects then support probability, statistics, and machine learning.
 
 ## Add a tutorial
 
