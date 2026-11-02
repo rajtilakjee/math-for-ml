@@ -1352,3 +1352,472 @@ a positive and a negative square root.
 Completing the square gives us a method for solving quadratic equations
 even when simple integer factorisation is not available. It also
 provides the foundation for deriving the quadratic formula.
+
+---
+
+## 8. The Quadratic Formula
+
+So far, we have learned two methods of solving quadratic equations:
+
+- Factorisation
+- Completing the square
+
+Factorisation works well when we can find suitable factors. Completing
+the square is more general, but it can involve fractions and square
+roots.
+
+We now want a formula that can solve any quadratic equation, including
+those that cannot be factorised neatly.
+
+That formula is called the quadratic formula.
+
+### 8.1 The general quadratic equation
+
+A quadratic equation has the general form:
+
+$$
+ax^2+bx+c=0
+$$
+
+where:
+
+- $a$, $b$, and $c$ are constants.
+- $x$ is the unknown variable.
+- $a\ne0$, because otherwise the equation would not be quadratic.
+
+Our objective is to find the value or values of $x$.
+
+The quadratic formula is:
+
+$$
+\boxed{x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}}
+$$
+
+Rather than memorising this formula, let's derive it using the method
+we have already learned: completing the square.
+
+### 8.2 Deriving the quadratic formula
+
+Start with the general quadratic equation:
+
+$$
+ax^2+bx+c=0
+$$
+
+**Step 1: Divide the entire equation by $a$**
+
+Since $a\ne0$, we can divide both sides by $a$:
+
+$$
+x^2+\frac{b}{a}x+\frac{c}{a}=0
+$$
+
+Move the constant term to the right-hand side:
+
+$$
+x^2+\frac{b}{a}x=-\frac{c}{a}
+$$
+
+**Step 2: Complete the square**
+
+Recall that for an expression of the form:
+
+$$
+x^2+bx
+$$
+
+we complete the square by adding:
+
+$$
+\left(\frac{b}{2}\right)^2
+$$
+
+In our equation, the coefficient of $x$ is $\frac{b}{a}$.
+
+Therefore, we need to add:
+
+$$
+\frac{b^2}{4a^2}
+$$
+
+Add this quantity to both sides:
+
+$$
+x^2+\frac{b}{a}x+\frac{b^2}{4a^2}=-\frac{c}{a}+\frac{b^2}{4a^2}
+$$
+
+**Step 3: Write the left-hand side as a perfect square**
+
+Using the identity:
+
+$$
+(x+p)^2=x^2+2px+p^2
+$$
+
+we can rewrite the left-hand side as:
+
+$$
+\left(x+\frac{b}{2a}\right)^2=-\frac{c}{a}+\frac{b^2}{4a^2}
+$$
+
+**Step 4: Simplify the right-hand side**
+
+We need a common denominator.
+
+Since:
+
+$$
+-\frac{c}{a}=-\frac{4ac}{4a^2}
+$$
+
+we can write:
+
+$$
+\left(x+\frac{b}{2a}\right)^2=\frac{b^2-4ac}{4a^2}
+$$
+
+**Step 5: Take the square root of both sides**
+
+Taking the square root introduces both positive and negative
+possibilities:
+
+$$
+x+\frac{b}{2a}=\pm\sqrt{\frac{b^2-4ac}{4a^2}}
+$$
+
+Separating the square root:
+
+$$
+x+\frac{b}{2a}=\pm\frac{\sqrt{b^2-4ac}}{2a}
+$$
+
+**Step 6: Isolate $x$**
+
+Subtract $\frac{b}{2a}$ from both sides:
+
+$$
+x=-\frac{b}{2a}\pm\frac{\sqrt{b^2-4ac}}{2a}
+$$
+
+Combining the fractions:
+
+$$
+\boxed{x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}}
+$$
+
+And there we have it!
+
+We have derived the quadratic formula entirely from completing the
+square.
+
+This is why understanding the earlier concepts matters. The formula is
+not an isolated mathematical trick. It follows directly from the
+algebra we have already learned.
+
+### 8.3 Understanding the two possible solutions
+
+Notice the symbol:
+
+$$
+\pm
+$$
+
+It means that we must consider two possibilities:
+
+$$
+x=\frac{-b+\sqrt{b^2-4ac}}{2a}
+$$
+
+and:
+
+$$
+x=\frac{-b-\sqrt{b^2-4ac}}{2a}
+$$
+
+A quadratic equation can therefore have two distinct real solutions,
+one repeated real solution, or no real solutions.
+
+We can determine which situation applies by examining the expression
+inside the square root.
+
+This brings us to the discriminant.
+
+---
+
+## 9. The Discriminant
+
+The discriminant is the expression inside the square root of the
+quadratic formula.
+
+For the general quadratic equation:
+
+$$
+ax^2+bx+c=0
+$$
+
+the discriminant is:
+
+$$
+\boxed{\Delta=b^2-4ac}
+$$
+
+The Greek letter $\Delta$ (delta) is commonly used to represent the
+discriminant.
+
+The discriminant tells us how many real solutions a quadratic equation
+has without requiring us to calculate the actual roots.
+
+There are three possible cases.
+
+### 9.1 Case 1: Positive discriminant
+
+When:
+
+$$
+\Delta>0
+$$
+
+the expression inside the square root is positive.
+
+The quadratic equation has:
+
+$$
+\boxed{\text{Two distinct real roots}}
+$$
+
+For example:
+
+$$
+x^2-5x+6=0
+$$
+
+Here:
+
+$$
+a=1,\qquad b=-5,\qquad c=6
+$$
+
+Calculate the discriminant:
+
+$$
+\Delta=b^2-4ac
+$$
+
+$$
+=(-5)^2-4(1)(6)
+$$
+
+$$
+=25-24
+$$
+
+$$
+\Delta=1
+$$
+
+Since the discriminant is positive, there are two distinct real roots.
+
+Using the quadratic formula:
+
+$$
+x=\frac{-(-5)\pm\sqrt{1}}{2(1)}
+$$
+
+$$
+x=\frac{5\pm1}{2}
+$$
+
+Therefore:
+
+$$
+x=3
+$$
+
+or:
+
+$$
+x=2
+$$
+
+The equation has two distinct real roots.
+
+### 9.2 Case 2: Zero discriminant
+
+When:
+
+$$
+\Delta=0
+$$
+
+the square root in the quadratic formula becomes zero.
+
+The equation has:
+
+$$
+\boxed{\text{One repeated real root}}
+$$
+
+For example:
+
+$$
+x^2-6x+9=0
+$$
+
+Here:
+
+$$
+a=1,\qquad b=-6,\qquad c=9
+$$
+
+Calculate the discriminant:
+
+$$
+\Delta=(-6)^2-4(1)(9)
+$$
+
+$$
+=36-36
+$$
+
+$$
+\Delta=0
+$$
+
+Using the quadratic formula:
+
+$$
+x=\frac{-(-6)\pm\sqrt{0}}{2(1)}
+$$
+
+$$
+x=\frac{6}{2}
+$$
+
+$$
+\boxed{x=3}
+$$
+
+Both possible solutions are identical.
+
+This is called a repeated root or a double root.
+
+### 9.3 Case 3: Negative discriminant
+
+When:
+
+$$
+\Delta<0
+$$
+
+the expression inside the square root is negative.
+
+A negative number does not have a real square root.
+
+Therefore, the quadratic equation has:
+
+$$
+\boxed{\text{No real roots}}
+$$
+
+For example:
+
+$$
+x^2+2x+5=0
+$$
+
+Here:
+
+$$
+a=1,\qquad b=2,\qquad c=5
+$$
+
+Calculate the discriminant:
+
+$$
+\Delta=2^2-4(1)(5)
+$$
+
+$$
+=4-20
+$$
+
+$$
+\Delta=-16
+$$
+
+Since the discriminant is negative, there are no real solutions.
+
+The equation does, however, have two complex solutions:
+
+$$
+x=-1\pm2i
+$$
+
+where $i$ is the imaginary unit:
+
+$$
+i=\sqrt{-1}
+$$
+
+We will study complex numbers separately if and when they become
+relevant.
+
+---
+
+## 10. Geometric Interpretation of the Discriminant
+
+The discriminant also has a geometric interpretation.
+
+Remember that the graph of a quadratic function is a parabola.
+
+Consider:
+
+$$
+y=ax^2+bx+c
+$$
+
+The roots of the corresponding quadratic equation are the points where
+the parabola intersects the $x$-axis.
+
+The discriminant tells us how the parabola intersects that axis.
+
+### Positive discriminant
+
+When:
+
+$$
+\Delta>0
+$$
+
+the parabola intersects the $x$-axis at two different points.
+
+There are two distinct real roots.
+
+### Zero discriminant
+
+When:
+
+$$
+\Delta=0
+$$
+
+the parabola touches the $x$-axis at exactly one point.
+
+There is one repeated real root.
+
+### Negative discriminant
+
+When:
+
+$$
+\Delta<0
+$$
+
+the parabola does not intersect the $x$-axis.
+
+There are no real roots.
+
+This gives us a useful connection between algebra and geometry.
+
+We can understand the number of solutions by examining the equation
+algebraically or by examining its graph geometrically.
