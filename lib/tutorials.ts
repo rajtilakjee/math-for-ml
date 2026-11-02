@@ -77,8 +77,8 @@ function collectTutorials(directory: string): Tutorial[] {
   return tutorials
 }
 
-function byTitle(a: TutorialSummary, b: TutorialSummary) {
-  return a.title.localeCompare(b.title)
+function byFilename(a: TutorialSummary, b: TutorialSummary) {
+  return a.slug.localeCompare(b.slug, undefined, { numeric: true })
 }
 
 function buildSection(folder: string, parentPath: string, tutorials: TutorialSummary[]): TocSection {
@@ -91,25 +91,25 @@ function buildSection(folder: string, parentPath: string, tutorials: TutorialSum
         .map((tutorial) => tutorial.folders[pathName.split("/").length])
         .filter((name): name is string => Boolean(name)),
     ),
-  ].sort((a, b) => a.localeCompare(b))
+  ].sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
 
   return {
     path: pathName,
     label: labelFromFolder(folder),
-    tutorials: here.sort(byTitle),
+    tutorials: here.sort(byFilename),
     children: childNames.map((name) => buildSection(name, pathName, tutorials)),
   }
 }
 
 export function getTutorials() {
-  return collectTutorials(tutorialsDirectory).sort((a, b) => a.slug.localeCompare(b.slug))
+  return collectTutorials(tutorialsDirectory).sort(byFilename)
 }
 
 export function getContents(): Contents {
   const tutorials = getTutorials().map(({ content: _content, ...summary }) => summary)
-  const root = tutorials.filter((tutorial) => tutorial.folders.length === 0).sort(byTitle)
+  const root = tutorials.filter((tutorial) => tutorial.folders.length === 0).sort(byFilename)
   const topFolders = [...new Set(tutorials.flatMap((tutorial) => tutorial.folders.slice(0, 1)))].sort((a, b) =>
-    a.localeCompare(b),
+    a.localeCompare(b, undefined, { numeric: true }),
   )
 
   return {
