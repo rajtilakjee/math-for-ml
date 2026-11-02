@@ -26,10 +26,10 @@ const serif = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "The ML Engineer's Field Guide",
-    template: "%s · Field Guide",
+    default: "Math for Machine Learning",
+    template: "%s · Math for Machine Learning",
   },
-  description: "Tutorials on mathematics and machine learning, typeset with MathJax.",
+  description: "Math for Machine Learning. Tutorials typeset with MathJax.",
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

@@ -1,6 +1,6 @@
-# The ML Engineer's Field Guide
+# Math for Machine Learning
 
-Tutorials on mathematics and machine learning. Each tutorial is a Markdown file in `content/tutorials`. The site is a Next.js app, equations are typeset with MathJax, and the deploy target is Vercel.
+Tutorials on the mathematics used in machine learning. Each tutorial is a Markdown file in `content/tutorials`. The site is a Next.js app, equations are typeset with MathJax, and the deploy target is Vercel.
 
 ## Add a tutorial
 
